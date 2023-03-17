@@ -5,6 +5,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      VALUE=Hello
     steps:
       - name: make file
         run: |
@@ -14,7 +16,7 @@ jobs:
           cat .env
       - name: set env
         run: |
-          echo "GREETING=Hello" >> $GITHUB_ENV
+          echo "GREETING=$VALUE" >> $GITHUB_ENV
       - name: use env
         run: |
           echo "${{ env.GREETING }} World!"
