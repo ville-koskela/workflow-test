@@ -6,7 +6,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      VALUE=Hello
+      VALUE: Hello
     steps:
       - name: make file
         run: |
