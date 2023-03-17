@@ -5,8 +5,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      GREETING: fi
     steps:
       - name: make file
         run: |
@@ -14,8 +12,10 @@ jobs:
       - name: read file
         run: |
           cat .env
+      - name: set env
+        run: |
+          echo "GREETING=Hello" >> $GITHUB_ENV
       - name: use env
         run: |
-          echo "$LOCALIZED_GREETING"
-        env:
-          LOCALIZED_GREETING: ${{ (contains(env.GREETING, 'f') && "Moi") || (contains(env.GREETING, 'en') && "Hello") }}
+          echo "${{ env.GREETING }} World!"
+
